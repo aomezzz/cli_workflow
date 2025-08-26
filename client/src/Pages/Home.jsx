@@ -3,6 +3,7 @@ import Navbar from '../Component/Navbar'
 import Restaurant from '../Component/Restaurant'
 import { Link } from 'react-router'
 import Swal from 'sweetalert2'
+import { API_ENDPOINTS } from '../config/api'
 
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -11,7 +12,7 @@ const Home = () => {
 
   const fetchRestaurants = async () => {
     try {
-      const response = await fetch('http://localhost:3001/restaurants');
+      const response = await fetch(API_ENDPOINTS.RESTAURANTS.BASE);
       const data = await response.json();
       setRestaurants(data);
       setFilteredRestaurants(data);

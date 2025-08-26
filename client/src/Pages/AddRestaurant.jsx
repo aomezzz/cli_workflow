@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../Component/Navbar'
 import { Link } from 'react-router'
 import Swal from 'sweetalert2'
+import { API_ENDPOINTS } from '../config/api'
 
 const AddRestaurant = () => {
     const [restaurant, setRestaurant] = React.useState({
@@ -32,7 +33,7 @@ const AddRestaurant = () => {
                 }
             });
 
-            const response = await fetch('http://localhost:3001/restaurants', {
+            const response = await fetch(API_ENDPOINTS.RESTAURANTS.BASE, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

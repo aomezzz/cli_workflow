@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../Component/Navbar';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import { API_ENDPOINTS } from '../config/api';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -43,7 +44,7 @@ const Dashboard = () => {
   const fetchDashboardData = async () => {
     try {
       // Fetch restaurants count
-      const restaurantsResponse = await fetch('http://localhost:3001/restaurants');
+      const restaurantsResponse = await fetch(API_ENDPOINTS.RESTAURANTS.BASE);
       const restaurants = await restaurantsResponse.json();
       
       setStats({

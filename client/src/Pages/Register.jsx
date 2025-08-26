@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import { API_ENDPOINTS } from '../config/api';
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
@@ -69,8 +70,8 @@ const Register = () => {
       // Prepare data for backend (exclude confirmPassword)
       const { confirmPassword, ...dataToSend } = registerData;
 
-      // TODO: Replace with actual backend endpoint
-      const response = await fetch('http://localhost:3000/api/auth/register', {
+      // TODO: Replace with actual backend endpoint when backend friend creates it
+      const response = await fetch(API_ENDPOINTS.AUTH.REGISTER, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams, Link } from 'react-router'
 import Navbar from '../Component/Navbar'
 import Swal from 'sweetalert2'
+import { API_ENDPOINTS } from '../config/api'
 
 const UpdateRestaurant = () => {
     // Get the restaurant ID
@@ -18,7 +19,7 @@ const UpdateRestaurant = () => {
     React.useEffect(()=>{
         const fetchRestaurant = async () => {
             try {
-                const response = await fetch(`http://localhost:3001/restaurants/${id}`);
+                const response = await fetch(API_ENDPOINTS.RESTAURANTS.BY_ID(id));
                 if (response.ok) {
                     const data = await response.json();
                     setRestaurant(data);
@@ -68,7 +69,7 @@ const UpdateRestaurant = () => {
                 }
             });
 
-            const response = await fetch(`http://localhost:3001/restaurants/${id}`, {
+            const response = await fetch(API_ENDPOINTS.RESTAURANTS.BY_ID(id), {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

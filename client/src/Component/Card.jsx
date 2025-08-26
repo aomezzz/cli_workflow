@@ -1,5 +1,6 @@
 import React from 'react'
 import Swal from 'sweetalert2'
+import { API_ENDPOINTS } from '../config/api'
 
 const Card = (props) => {
   const handleDelete = async () => {
@@ -29,7 +30,7 @@ const Card = (props) => {
           }
         });
 
-        const response = await fetch(`http://localhost:3001/restaurants/${props.id}`, {
+        const response = await fetch(API_ENDPOINTS.RESTAURANTS.BY_ID(props.id), {
           method: 'DELETE',
         });
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import { API_ENDPOINTS } from '../config/api';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -30,8 +31,8 @@ const Login = () => {
         }
       });
 
-      // TODO: Replace with actual backend endpoint
-      const response = await fetch('http://localhost:3000/api/auth/login', {
+      // TODO: Replace with actual backend endpoint when backend friend creates it
+      const response = await fetch(API_ENDPOINTS.AUTH.LOGIN, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
