@@ -33,12 +33,19 @@ const AddRestaurant = () => {
                 }
             });
 
+            // Transform data for backend API (img -> imageUrl)
+            const backendData = {
+                title: restaurant.title,
+                type: restaurant.type,
+                imageUrl: restaurant.img // Backend expects imageUrl
+            };
+
             const response = await fetch(API_ENDPOINTS.RESTAURANTS.BASE, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(restaurant),
+                body: JSON.stringify(backendData), // Send transformed data
             });
 
             if (response.ok) {

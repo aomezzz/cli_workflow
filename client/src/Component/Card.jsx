@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Swal from 'sweetalert2'
 import { API_ENDPOINTS } from '../config/api'
 
 const Card = (props) => {
+  const [imageError, setImageError] = useState(false);
+  
+  const handleImageError = () => {
+    setImageError(true);
+  };
+  
+  const getImageSrc = () => {
+    if (imageError || (!props.img && !props.imageUrl)) {
+      return "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop&crop=center";
+    }
+    // Support both img (json-server) and imageUrl (backend API)
+    return props.imageUrl || props.img;
+  };
   const handleDelete = async () => {
     const result = await Swal.fire({
       title: '🗑️ Delete Restaurant?',
@@ -75,12 +88,11 @@ const Card = (props) => {
     <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
       <figure className="h-48 overflow-hidden">
         <img
-          src={props.img}
+          src={getImageSrc()}
           alt={props.title}
           className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-          onError={(e) => {
-            e.target.src = "https://via.placeholder.com/400x300?text=No+Image";
-          }}
+          onError={handleImageError}
+          onLoad={() => setImageError(false)}
         />
       </figure>
       <div className="card-body p-4">

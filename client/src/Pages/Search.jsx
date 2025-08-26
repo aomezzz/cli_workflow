@@ -180,6 +180,7 @@ const Search = () => {
                   title={restaurant.title}
                   type={restaurant.type}
                   img={restaurant.img}
+                  imageUrl={restaurant.imageUrl}
                   onDelete={handleDelete}
                 />
               ))

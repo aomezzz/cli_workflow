@@ -22,7 +22,13 @@ const UpdateRestaurant = () => {
                 const response = await fetch(API_ENDPOINTS.RESTAURANTS.BY_ID(id));
                 if (response.ok) {
                     const data = await response.json();
-                    setRestaurant(data);
+                    // Transform backend data (imageUrl -> img for form compatibility)
+                    const formData = {
+                        title: data.title,
+                        type: data.type,
+                        img: data.imageUrl || data.img // Handle both backend and json-server
+                    };
+                    setRestaurant(formData);
                 } else {
                     await Swal.fire({
                         title: 'Restaurant Not Found! ❌',
@@ -69,12 +75,19 @@ const UpdateRestaurant = () => {
                 }
             });
 
+            // Transform data for backend API (img -> imageUrl)
+            const backendData = {
+                title: restaurant.title,
+                type: restaurant.type,
+                imageUrl: restaurant.img // Backend expects imageUrl
+            };
+
             const response = await fetch(API_ENDPOINTS.RESTAURANTS.BY_ID(id), {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(restaurant),
+                body: JSON.stringify(backendData), // Send transformed data
             });
 
             if (response.ok) {

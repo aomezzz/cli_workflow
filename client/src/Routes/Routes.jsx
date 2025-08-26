@@ -8,7 +8,7 @@ import SweetAlertDemo from "../Pages/SweetAlertDemo";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Dashboard from "../Pages/Dashboard";
-import ProtectedRoute from "../Component/ProtectedRoute";
+// Removed problematic import
 
 const router = createBrowserRouter([
     {
@@ -25,11 +25,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: (
-            <ProtectedRoute>
-                <Dashboard />
-            </ProtectedRoute>
-        ),
+        element: <Dashboard />,
     },
     {
         path: "/add-restaurant",

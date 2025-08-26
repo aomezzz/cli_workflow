@@ -19,6 +19,7 @@ const Restaurant = ({ restaurants = [], onRefresh }) => {
               title={restaurant.title} 
               type={restaurant.type} 
               img={restaurant.img}
+              imageUrl={restaurant.imageUrl}
               onDelete={handleDelete}
             />
           ))

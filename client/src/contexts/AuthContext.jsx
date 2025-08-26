@@ -15,20 +15,23 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is logged in on component mount
-    const token = localStorage.getItem('token');
-    const userData = localStorage.getItem('user');
-
-    if (token && userData) {
-      try {
-        const parsedUser = JSON.parse(userData);
-        setUser(parsedUser);
-      } catch (error) {
-        console.error('Error parsing user data:', error);
-        logout();
+    const checkAuth = () => {
+      const token = localStorage.getItem('token');
+      const userData = localStorage.getItem('user');
+      
+      if (token && userData) {
+        try {
+          setUser(JSON.parse(userData));
+        } catch (error) {
+          console.error('Error parsing user data:', error);
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+        }
       }
-    }
-    setLoading(false);
+      setLoading(false);
+    };
+
+    checkAuth();
   }, []);
 
   const login = (userData, token) => {
@@ -47,13 +50,8 @@ export const AuthProvider = ({ children }) => {
     return !!user && !!localStorage.getItem('token');
   };
 
-  const hasRole = (requiredRole) => {
-    if (!user) return false;
-    return user.roleId === requiredRole;
-  };
-
-  const isAdmin = () => {
-    return hasRole('1'); // Assuming roleId '1' is admin
+  const hasRole = (role) => {
+    return user && user.role === role;
   };
 
   const value = {
@@ -62,7 +60,6 @@ export const AuthProvider = ({ children }) => {
     logout,
     isAuthenticated,
     hasRole,
-    isAdmin,
     loading
   };
 
