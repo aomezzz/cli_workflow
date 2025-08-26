@@ -58,6 +58,8 @@ const AddRestaurant = () => {
                     confirmButtonText: 'Add Another Restaurant',
                     showCancelButton: true,
                     cancelButtonText: 'Go to Home',
+                    timer: 5000,
+                    timerProgressBar: true,
                     cancelButtonColor: '#6b7280',
                     reverseButtons: true
                 }).then((result) => {

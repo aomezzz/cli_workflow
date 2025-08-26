@@ -88,7 +88,7 @@ const Login = () => {
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold text-primary mb-2">🍽️ Grab Restaurant</h1>
             <h2 className="text-xl font-semibold mb-2">Welcome Back!</h2>
-            <p className="text-gray-600">Sign in to your account</p>
+            <p className="text-gray-600">Login to your account</p>
           </div>
 
           {/* Login Form */}
@@ -157,7 +157,7 @@ const Login = () => {
                 className={`btn btn-primary w-full ${isLoading ? 'loading' : ''}`}
                 disabled={isLoading}
               >
-                {isLoading ? 'Signing in...' : '🔐 Sign In'}
+                {isLoading ? 'Login...' : '🔐 Login'}
               </button>
             </div>
           </form>
@@ -170,7 +170,7 @@ const Login = () => {
             <p className="text-gray-600">
               Don't have an account?{' '}
               <Link to="/register" className="link link-primary font-semibold">
-                Sign up here
+                Register here
               </Link>
             </p>
           </div>
