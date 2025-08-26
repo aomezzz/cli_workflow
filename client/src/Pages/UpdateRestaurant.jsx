@@ -96,9 +96,7 @@ const UpdateRestaurant = () => {
                     text: 'Restaurant information has been updated successfully!',
                     icon: 'success',
                     confirmButtonColor: '#10b981',
-                    confirmButtonText: 'Go to Home',
-                    timer: 3000,
-                    timerProgressBar: true,
+                    confirmButtonText: 'Go to Home'
                 });
                 window.location.href = '/';
             } else {
