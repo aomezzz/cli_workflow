@@ -9,8 +9,11 @@ pnpm-debug.log*
 logs/
 *.log
 
-# dotenv
+# dotenv - environment files
 .env
+.env.local
+.env.*.local
+*.env
 
 # Runtime data
 pids
@@ -45,12 +48,20 @@ client/node_modules/
 client/dist/
 client/.vite/
 
-# Server-specific
-server/node_modules/
-server/dist/
-server/.env
+# Server-specific (Frontend developer - ignore all server files)
+server/
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+
+# Docker backend-related
+docker-compose.override.yml
+docker-compose.prod.yml
 
 # Misc
 *.tgz
 *.bak
 *.tmp
+
